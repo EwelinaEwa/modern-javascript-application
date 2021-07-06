@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header id="header">
+    <img src="images/weather-news.png" alt="Logo" id="logo">
+    <h1 class="h1">Know the Weather</h1>
+</header>
+
+<main id="weatherContainer">
+    <div id="request">
+        <label for="enterCity" id="labelCity">Enter name of the city</label>
+        <br>
+        <input type="text" id="enterCity" value="">
+        <br>
+        <button id="showWeather">Show me the weather!</button>
+    </div>
+    <div id="forecast">
+        <div id="currentWeather">
+            <img src="#" alt="locationImage" id="locationImage">
+            <div id="location">Location</div>
+            <img src="#" id="icon">
+            <div id="description">Description</div>
+            <div id="temperature">Temperature</div>
+            <div id="maxminTemp"><span id="maxTemp">Max temp</span> / <span id="minTemp">Min temp</span></div>
+        </div>
+        <div id="weatherForecast">
+            <div id="day1" class="dailyForecast">
+                <div id="date1" class="dates">Day</div>
+                <img src="#" id="icon1" class="img">
+                <div id="temperature1" class="temperature">Temperature</div>
+            </div>
+            <div id="day2" class="dailyForecast">
+                <div id="date2" class="dates">Day</div>
+                <img src="#" id="icon2" class="img">
+                <div id="temperature2" class="temperature">Temperature</div>
+            </div>
+            <div id="day3" class="dailyForecast">
+                <div id="date3" class="dates">Day</div>
+                <img src="#" id="icon3" class="img">
+                <div id="temperature3" class="temperature">Temperature</div>
+            </div>
+            <div id="day4" class="dailyForecast">
+                <div id="date4" class="dates">Day</div>
+                <img src="#" id="icon4" class="img">
+                <div id="temperature4" class="temperature">Temperature</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="footer">
+    <p>© 2021 Know the Weather</p>
+    <p>Background photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/clouds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </p>
+</footer>
+</div>
+
+<script src="js/fetch.js"></script>
+</body>
+</html>
