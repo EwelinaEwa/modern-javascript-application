@@ -93,12 +93,8 @@ document.getElementById("enterCity").addEventListener("click", () => document.ge
 
 // Get forecast for selected city on click or enter
 
-document.getElementById("showWeather").addEventListener("click", () => {
-    uploadForecast()
-});
+document.getElementById("showWeather").addEventListener("click", uploadForecast);
 
 document.getElementById("enterCity").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        uploadForecast();
-    }
+    if (e.key === "Enter") uploadForecast();
 });
