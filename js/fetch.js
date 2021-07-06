@@ -75,19 +75,19 @@ document.getElementById("enterCity").addEventListener("click", () => document.ge
 
 //Get current weather for selected city
 
-document.getElementById("showWeather").addEventListener("click", () => {
+let uploadForecast = () => {
     city = document.getElementById("enterCity").value;
     openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
     unsplashUrl = unsplashApi+city+unsplashApiKey;
     loadWeather(openWeatherMapUrl, unsplashUrl);
+}
 
+document.getElementById("showWeather").addEventListener("click", () => {
+    uploadForecast()
 });
 
 document.getElementById("enterCity").addEventListener("keypress", (e) => {
-    if(e.key === "Enter") {
-        city = document.getElementById("enterCity").value;
-        openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
-        unsplashUrl = unsplashApi+city+unsplashApiKey;
-        loadWeather(openWeatherMapUrl, unsplashUrl);
+    if (e.key === "Enter") {
+        uploadForecast();
     }
 });
