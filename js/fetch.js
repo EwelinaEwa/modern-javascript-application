@@ -21,6 +21,39 @@ let loadCityImage = unsplashUrl => {
         .then(locationImages => document.getElementById("locationImage").src = locationImages.results[0].urls.regular)
 };
 
+//Get all dates if hour = noon, so we are grabbing only one moment per day
+
+let forecastDates = forecast => {
+    let forecastDatesArray = [];
+    for (let i=0; i<forecast.list.length; i++) {
+        let day = new Date(forecast.list[i].dt * 1000).getDate();
+        let currentDate = new Date().getDate();
+        if (day === currentDate) { }
+        else {
+            let hour = new Date(forecast.list[i].dt * 1000).getHours()-2;
+            if (hour === 12) {
+                forecastDatesArray.push(forecast.list[i]);
+            }
+        }
+    }
+//     console.log(forecastDatesArray)
+//     // return forecastDatesArray;
+// }
+//
+// // Forecast for next 4 days
+//
+// let forecastWeather = (forecastDatesArray) => {
+    for (let day = 1; day < 5; day++) {
+        let dayName = new Date(forecastDatesArray[day - 1].dt * 1000).toLocaleString('en-us', {weekday: 'short'});
+        let dayNumber = new Date(forecastDatesArray[day - 1].dt * 1000).getDate();
+        let month = (new Date(forecastDatesArray[day - 1].dt * 1000)).toLocaleString('default', {month: 'short'});
+
+        document.getElementById(`date${day}`).innerHTML = dayName + `, ` + dayNumber + ` ` + month;
+        document.getElementById(`icon${day}`).src = `https://openweathermap.org/img/wn/` + forecastDatesArray[day - 1].weather[0].icon + `@4x.png`;
+        document.getElementById(`temperature${day}`).innerHTML = Math.round(forecastDatesArray[day - 1].main.temp) + ' °C';
+    }
+}
+
 //Get weather from openweathermap
 
 let loadWeather = (openWeatherMapUrl, unsplashUrl) => {
@@ -35,35 +68,20 @@ let loadWeather = (openWeatherMapUrl, unsplashUrl) => {
             document.getElementById("maxTemp").innerHTML = Math.round(forecast.list[0].main.temp_max)+' °';
             document.getElementById("minTemp").innerHTML = Math.round(forecast.list[0].main.temp_min)+' °';
 
-            //Get all dates if hour = noon, so we are grabbing only one moment per day
-
-            let forecastDatesArray = [];
-            for (let i=0; i<forecast.list.length; i++) {
-                let day = new Date(forecast.list[i].dt * 1000).getDate();
-                let currentDate = new Date().getDate();
-                if (day === currentDate) { }
-                else {
-                    let hour = new Date(forecast.list[i].dt * 1000).getHours()-2;
-                    if (hour === 12) {
-                        forecastDatesArray.push(forecast.list[i]);
-                    }
-                }
-            }
-
-            // Forecast
-
-            for (let day=1; day<5; day++) {
-                let dayName = new Date(forecastDatesArray[day-1].dt*1000).toLocaleString('en-us', {weekday:'short'});
-                let dayNumber = new Date(forecastDatesArray[day-1].dt * 1000).getDate();
-                let month = (new Date(forecastDatesArray[day-1].dt * 1000)).toLocaleString('default',{month:'short'});
-
-                document.getElementById(`date${day}`).innerHTML = dayName+`, `+dayNumber+` `+month;
-                document.getElementById(`icon${day}`).src = `https://openweathermap.org/img/wn/`+forecastDatesArray[day-1].weather[0].icon+`@4x.png`;
-                document.getElementById(`temperature${day}`).innerHTML = Math.round(forecastDatesArray[day-1].main.temp) + ' °C';
-            }
-            loadCityImage(unsplashUrl)
+            loadCityImage(unsplashUrl);
+            forecastDates(forecast);
+            // forecastWeather.apply(this, forecastDatesArray);
         })
 };
+
+//Get weather for selected city
+
+let uploadForecast = () => {
+    city = document.getElementById("enterCity").value;
+    openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
+    unsplashUrl = unsplashApi+city+unsplashApiKey;
+    loadWeather(openWeatherMapUrl, unsplashUrl);
+}
 
 //Get weather for Brussels on load
 
@@ -73,14 +91,7 @@ window.onload = () => loadWeather(openWeatherMapUrl, unsplashUrl);
 
 document.getElementById("enterCity").addEventListener("click", () => document.getElementById("enterCity").value = "");
 
-//Get current weather for selected city
-
-let uploadForecast = () => {
-    city = document.getElementById("enterCity").value;
-    openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
-    unsplashUrl = unsplashApi+city+unsplashApiKey;
-    loadWeather(openWeatherMapUrl, unsplashUrl);
-}
+// Get forecast for selected city on click or enter
 
 document.getElementById("showWeather").addEventListener("click", () => {
     uploadForecast()
