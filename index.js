@@ -1,3 +1,5 @@
+import {loadCityImage} from "./js/loadCityImage.js";
+
 //Global variables
 
 //Openweathermap api
@@ -11,15 +13,6 @@ let openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
 let unsplashApi = 'https://api.unsplash.com/search/photos?page=1&per_page=1&orientation=landscape&query=';
 let unsplashApiKey = '&client_id=DLxMGtSq3G-ePDzRXwcuGyxX0EaKwiKiaJFc8LAWLvs';
 let unsplashUrl = unsplashApi+city+unsplashApiKey;
-
-
-//Get Unsplash image
-
-let loadCityImage = unsplashUrl => {
-    fetch(unsplashUrl)
-        .then(response => response.json())
-        .then(locationImages => document.getElementById("locationImage").src = locationImages.results[0].urls.regular)
-};
 
 //Get all dates if hour = noon, so we are grabbing only one moment per day
 
