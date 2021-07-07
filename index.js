@@ -1,4 +1,5 @@
 import {loadCityImage} from "./js/loadCityImage.js";
+import {forecastDates} from "./js/forecastDates.js";
 
 //Global variables
 
@@ -13,24 +14,6 @@ let openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
 let unsplashApi = 'https://api.unsplash.com/search/photos?page=1&per_page=1&orientation=landscape&query=';
 let unsplashApiKey = '&client_id=DLxMGtSq3G-ePDzRXwcuGyxX0EaKwiKiaJFc8LAWLvs';
 let unsplashUrl = unsplashApi+city+unsplashApiKey;
-
-//Get all dates if hour = noon, so we are grabbing only one moment per day
-
-let forecastDates = forecast => {
-    let forecastDatesArray = [];
-    for (let i=0; i<forecast.list.length; i++) {
-        let day = new Date(forecast.list[i].dt * 1000).getDate();
-        let currentDate = new Date().getDate();
-        if (day === currentDate) { }
-        else {
-            let hour = new Date(forecast.list[i].dt * 1000).getHours()-2;
-            if (hour === 12) {
-                forecastDatesArray.push(forecast.list[i]);
-            }
-        }
-    }
-    return forecastDatesArray;
-}
 
 // Forecast for next 4 days
 
