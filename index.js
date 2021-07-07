@@ -1,20 +1,7 @@
 import {loadCityImage} from "./js/loadCityImage.js";
 import {forecastDates} from "./js/forecastDates.js";
 import {forecastWeather} from "./js/forecastWeather.js";
-
-//Global variables
-
-//Openweathermap api
-let openWeatherMapApi = 'https://api.openweathermap.org/data/2.5/forecast?q=';
-let city = 'Brussels';
-let units = '&units=metric';
-let openWeatherMapKey = '&APPID=f1fe3a5b2ff45140872785bfb2753205';
-let openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
-
-//Unsplash api
-let unsplashApi = 'https://api.unsplash.com/search/photos?page=1&per_page=1&orientation=landscape&query=';
-let unsplashApiKey = '&client_id=DLxMGtSq3G-ePDzRXwcuGyxX0EaKwiKiaJFc8LAWLvs';
-let unsplashUrl = unsplashApi+city+unsplashApiKey;
+import {openWeatherMapApi, city, units, openWeatherMapKey, openWeatherMapUrl, unsplashApi, unsplashApiKey, unsplashUrl} from "./js/globalVariables.js";
 
 //Get weather from openweathermap
 
@@ -40,9 +27,9 @@ let loadWeather = (openWeatherMapUrl, unsplashUrl) => {
 //Get weather for selected city
 
 let uploadForecast = () => {
-    city = document.getElementById("enterCity").value;
-    openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
-    unsplashUrl = unsplashApi+city+unsplashApiKey;
+    let city = document.getElementById("enterCity").value;
+    let openWeatherMapUrl = openWeatherMapApi+city+units+openWeatherMapKey;
+    let unsplashUrl = unsplashApi+city+unsplashApiKey;
     loadWeather(openWeatherMapUrl, unsplashUrl);
 }
 
