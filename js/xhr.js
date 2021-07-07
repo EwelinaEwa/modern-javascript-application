@@ -1,3 +1,5 @@
+//First try at weather app with use of xhr, later on substituted with fetch method.
+
 //Global variables
 
 //Openweathermap api

@@ -36,13 +36,12 @@ let forecastDates = forecast => {
             }
         }
     }
-//     console.log(forecastDatesArray)
-//     // return forecastDatesArray;
-// }
-//
-// // Forecast for next 4 days
-//
-// let forecastWeather = (forecastDatesArray) => {
+    return forecastDatesArray;
+}
+
+// Forecast for next 4 days
+
+let forecastWeather = (forecastDatesArray) => {
     for (let day = 1; day < 5; day++) {
         let dayName = new Date(forecastDatesArray[day - 1].dt * 1000).toLocaleString('en-us', {weekday: 'short'});
         let dayNumber = new Date(forecastDatesArray[day - 1].dt * 1000).getDate();
@@ -70,7 +69,8 @@ let loadWeather = (openWeatherMapUrl, unsplashUrl) => {
 
             loadCityImage(unsplashUrl);
             forecastDates(forecast);
-            // forecastWeather.apply(this, forecastDatesArray);
+            let forecastDatesArray = forecastDates(forecast)
+            forecastWeather(forecastDatesArray);
         })
 };
 
@@ -84,17 +84,11 @@ let uploadForecast = () => {
 }
 
 //Get weather for Brussels on load
-
 window.onload = () => loadWeather(openWeatherMapUrl, unsplashUrl);
 
 //Clear previous search result on click
-
 document.getElementById("enterCity").addEventListener("click", () => document.getElementById("enterCity").value = "");
 
 // Get forecast for selected city on click or enter
-
 document.getElementById("showWeather").addEventListener("click", uploadForecast);
-
-document.getElementById("enterCity").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") uploadForecast();
-});
+document.getElementById("enterCity").addEventListener("keypress", (e) => {if (e.key === "Enter") uploadForecast();});
