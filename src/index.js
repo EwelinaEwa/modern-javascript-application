@@ -1,7 +1,7 @@
-import {loadCityImage} from "./js/loadCityImage.js";
-import {forecastDates} from "./js/forecastDates.js";
-import {forecastWeather} from "./js/forecastWeather.js";
-import {openWeatherMapApi, city, units, openWeatherMapKey, openWeatherMapUrl, unsplashApi, unsplashApiKey, unsplashUrl} from "./js/globalVariables.js";
+import {loadCityImage} from "../js/loadCityImage.js";
+import {forecastDates} from "../js/forecastDates.js";
+import {forecastWeather} from "../js/forecastWeather.js";
+import {openWeatherMapApi, city, units, openWeatherMapKey, openWeatherMapUrl, unsplashApi, unsplashApiKey, unsplashUrl} from "../js/globalVariables.js";
 
 //Get weather from openweathermap
 
